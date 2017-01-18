@@ -1,1 +1,1 @@
-# TriviaQuizForCottans
+# TriviaQuizForKottans
