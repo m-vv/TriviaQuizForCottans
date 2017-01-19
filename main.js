@@ -20,23 +20,21 @@ function initPage(){
 $(document).ready(function() { main();});
 
 function main() {
-
-    $.getJSON('http://jservice.io/api/random', function(data) {
-        $("#questionID").html(data[0].id);
-        $("#totalQuestions").html( Number($("#totalQuestions").text())+1);
-        $("#category").html(data[0].category['title']);
-        $("#question").html(data[0].question);
-    });
-//bad solution how to solve this in another way?
-    $("#buttonSkip").click( function(){
+    function newQuestion() {
         $.getJSON('http://jservice.io/api/random', function(data) {
             $("#questionID").html(data[0].id);
             $("#totalQuestions").html( Number($("#totalQuestions").text())+1);
             $("#category").html(data[0].category['title']);
             $("#question").html(data[0].question);
         });
-    });
-}
+    } ;
+    newQuestion();
+     //
+    $("#buttonSkip").click( function(){
+        newQuestion();
+        });
+    };
+
 /*
 function saveJSON(dat) {
     state.id= dat[0]["id"];
