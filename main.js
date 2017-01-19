@@ -1,8 +1,8 @@
 /**
  * Created by pramvvlocal on 19.01.2017.
  */
-var state;
-var tempid;
+
+
 /*
  state ={
     id:20,
@@ -17,35 +17,24 @@ function initPage(){
     $("#totalQuestions").html(0);
 }
  */
-$(document).ready(function() {
-        getData();
-    }
-);
+$(document).ready(function() { main();});
 
-function getData() {
+function main() {
 
-    /* why I cannot change global ogbject from callback fucntion?*/
-    /* read this information
-     http://stackoverflow.com/questions/23667086/why-is-my-variable-unaltered-after-i-modify-it-inside-of-a-function-asynchron
-     http://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call/14220323#14220323
-
-     Bad things to program with JavaScript we should Asynchronous word!
-
-    * */
     $.getJSON('http://jservice.io/api/random', function(data) {
         $("#questionID").html(data[0].id);
-        $("#totalQuestions").html();
+        $("#totalQuestions").html( Number($("#totalQuestions").text())+1);
         $("#category").html(data[0].category['title']);
         $("#question").html(data[0].question);
-
-
-       /* state.id = data[0]["id"];
-        tempid = 34; */
-
-
-      /* saveJSON(data);*/
-
-       // $("#ansPrompt").text(data[0]["id"]);
+    });
+//bad solution how to solve this in another way?
+    $("#buttonSkip").click( function(){
+        $.getJSON('http://jservice.io/api/random', function(data) {
+            $("#questionID").html(data[0].id);
+            $("#totalQuestions").html( Number($("#totalQuestions").text())+1);
+            $("#category").html(data[0].category['title']);
+            $("#question").html(data[0].question);
+        });
     });
 }
 /*
