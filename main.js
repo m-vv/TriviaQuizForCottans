@@ -23,6 +23,17 @@ function main() {
             for (var i = 0; i<answerArr.length; i++) {
                 $("#letters").append("<button type='button' class='btn btn-warning'>"+answerArr[i]+"</button>");
             }
+            $(".btn-warning").click(function() {
+                tryAnsArr.push($(this).text());
+                $("#tryAns").append("<button type='button' class='btn btn-info'>"+$(this).text()+"</button>");
+                $(this).remove();
+            });
+            //click on bt-info does not work
+            $(".btn-info").click(function() {
+                $("#letters").append("<button type='button' class='btn btn-danger'>"+$(this).text()+"</button>");
+                $(this).remove();
+            });
+
 
         });
     }
