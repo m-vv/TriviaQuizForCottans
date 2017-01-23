@@ -42,7 +42,7 @@ $(document).ready(function() {
            //$("#ansPrompt").html("<p>all letters used</p>");//for some reson without this code doesn't work?
             if ($("#curAnswer").text() === $("#hiddenAnswer").text()) {
             $("#ansPrompt").html("<p class='alert alert-success center'><i class='glyphicon glyphicon-ok'></i>correct</p>");
-
+            $("#totalAnswers").html( Number($("#totalAnswers").text())+1);
             } else {
                 $("#ansPrompt").html("<p class='alert alert-warning'><i class='glyphicon glyphicon-remove'></i>not correct</p>");
             }
