@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- for future
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    -->
+    <!-- for local development -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- jQuery library  for future
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    -->
+    <!--jQuery for local development -->
+    <script src="jquery-3.1.1.min.js"></script>
+
+    <!--myScripts-->
+    <script src="main.js"></script>
     <title>Trivia Quiz For Kottans
     </title>
 </head>
@@ -21,32 +34,38 @@
 
     <div class="row">
         <div class="col-xs-4">
-            <p class="text-info">Correct Answers: <span class="badge">0 </span> </p>
+            <p class="text-info">Correct Answers: <span class="badge" id="totalAnswers">0 </span> </p>
         </div>
         <div class="col-xs-4">
             <p></p>
         </div>
         <div class="col-xs-4">
-            <p class="text-info">Totals Questions: <span class="badge">0</span></p>
+            <p class="text-info">Totals Questions: <span class="badge" id="totalQuestions">-1</span></p>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 ">
             <div class = "">
-                <h1>Question #</h1>
-                <h2>Category</h2>
-                <div class = "well well-lg">
+                <h1>Question <span id="questionID" >0 </span></h1>
+                <h2 >Category:<span id="category" > </span></h2>
+                <div class = "well well-lg" id="question">
                     Text 0f question
                 </div>
-                <button type="button" class="btn btn-primary btn-block">Skip</button>
-                <div class=" well">
-                    Answer
+                <button type="button" class="btn btn-primary btn-block" id="buttonSkip">Skip</button>
+                <div class="well" id="ansPrompt">
+
                 </div>
-                <div class="well">
-                    field to answer
+                <div class="well bt-group" id="tryAns">
+
                 </div>
-                <div class="well">
-                    place to letter or for button next question
+                <div class="well bt-group" id="letters">
+
+                </div>
+                <div class="well bt-group" id="hiddenAnswer">
+
+                </div>
+                <div class="well bt-group" id="curAnswer">
+
                 </div>
 
             </div>
