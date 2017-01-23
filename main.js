@@ -3,9 +3,11 @@
  */
 
 function newQuestion() {
+    'use strict';
     $("#tryAns").html('');
     $("#letters").html('');
     $("#ansPrompt").html('');
+    //getting data from server
     $.getJSON('http://jservice.io/api/random', function(data) {
         $("#questionID").html(data[0].id);
         $("#totalQuestions").html( Number($("#totalQuestions").text())+1);
@@ -22,7 +24,9 @@ function newQuestion() {
 }
 
 $(document).ready(function() {
+    'use strict';
     $("#curAnswer").hide();
+    $("#hiddenAnswer").hide();
 
       newQuestion();
       //event handlers
@@ -63,6 +67,7 @@ $(document).ready(function() {
         $(this).remove();
     });
 });
+
 //for random shifting of a array
 function compareRandom(a, b) {
     'use strict';
