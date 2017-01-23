@@ -3,11 +3,14 @@
  */
 
 function newQuestion() {
+    $("#tryAns").html('');
+    $("#letters").html('');
     $.getJSON('http://jservice.io/api/random', function(data) {
         $("#questionID").html(data[0].id);
         $("#totalQuestions").html( Number($("#totalQuestions").text())+1);
         $("#category").html(data[0].category.title);
         $("#question").html(data[0].question);
+        $("#curAnswer").html('');
         var answerText = data[0].answer;
         var answerArr = answerText.split('').sort(compareRandom);
         $("#hiddenAnswer").html(answerText);
@@ -31,11 +34,22 @@ $(document).ready(function() {
     * */
     $("#letters").on('click','button',function() {
         $("#tryAns").append("<button type='button' class='btn btn-info'>"+$(this).text()+"</button>");
+        $("#curAnswer").html( $("#curAnswer").text()+$(this).text());
         $(this).remove();
+
+        if ($("#letters").text() === '') {
+           //$("#ansPrompt").html("<p>all letters used</p>");//for some reson without this code doesn't work?
+            if ($("#curAnswer").text() === $("#hiddenAnswer").text()) {
+            $("#ansPrompt").html("<p>correct</p>");
+            } else {
+                $("#ansPrompt").html("<p>not correct</p>");
+            }
+        }
     });
 
     $("#tryAns").on('click','button',function() {
         $("#letters").append("<button type='button' class='btn btn-danger'>"+$(this).text()+"</button>");
+        $("#curAnswer").html( $("#curAnswer").text().replace($(this).text(),''));
         $(this).remove();
     });
 });
