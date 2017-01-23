@@ -5,6 +5,7 @@
 function newQuestion() {
     $("#tryAns").html('');
     $("#letters").html('');
+    $("#ansPrompt").html('');
     $.getJSON('http://jservice.io/api/random', function(data) {
         $("#questionID").html(data[0].id);
         $("#totalQuestions").html( Number($("#totalQuestions").text())+1);
@@ -21,8 +22,10 @@ function newQuestion() {
 }
 
 $(document).ready(function() {
+    $("#curAnswer").hide();
 
       newQuestion();
+      //event handlers
     $("#buttonSkip").click( function(){
         newQuestion();
         $("#tryAns").html('');
@@ -33,6 +36,9 @@ $(document).ready(function() {
      f new HTML is being injected into the page, it is preferable to use delegated events to attach an event handler, as described next.
      Delegated events have the advantage that they can process events from descendant elements that are added to the document at a later time. For example, if the table exists, but the rows are added dynamically using code, the following will handle it
     * */
+    $("#letters").on('click','p',function(){
+        newQuestion();
+    });
     $("#letters").on('click','button',function() {
         $("#tryAns").append("<button type='button' class='btn btn-info'>"+$(this).text()+"</button>");
         $("#curAnswer").html( $("#curAnswer").text()+$(this).text());
@@ -43,6 +49,7 @@ $(document).ready(function() {
             if ($("#curAnswer").text() === $("#hiddenAnswer").text()) {
             $("#ansPrompt").html("<p class='alert alert-success center'><i class='glyphicon glyphicon-ok'></i>correct</p>");
             $("#totalAnswers").html( Number($("#totalAnswers").text())+1);
+                $("#letters").html('<p class="alert alert-success">New question</p>');
             } else {
                 $("#ansPrompt").html("<p class='alert alert-warning'><i class='glyphicon glyphicon-remove'></i>not correct</p>");
             }
