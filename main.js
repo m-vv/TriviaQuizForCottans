@@ -21,6 +21,7 @@ function newQuestion() {
 }
 
 $(document).ready(function() {
+
       newQuestion();
     $("#buttonSkip").click( function(){
         newQuestion();
@@ -40,9 +41,10 @@ $(document).ready(function() {
         if ($("#letters").text() === '') {
            //$("#ansPrompt").html("<p>all letters used</p>");//for some reson without this code doesn't work?
             if ($("#curAnswer").text() === $("#hiddenAnswer").text()) {
-            $("#ansPrompt").html("<p>correct</p>");
+            $("#ansPrompt").html("<p class='alert alert-success center'><i class='glyphicon glyphicon-ok'></i>correct</p>");
+
             } else {
-                $("#ansPrompt").html("<p>not correct</p>");
+                $("#ansPrompt").html("<p class='alert alert-warning'><i class='glyphicon glyphicon-remove'></i>not correct</p>");
             }
         }
     });
@@ -50,6 +52,7 @@ $(document).ready(function() {
     $("#tryAns").on('click','button',function() {
         $("#letters").append("<button type='button' class='btn btn-danger'>"+$(this).text()+"</button>");
         $("#curAnswer").html( $("#curAnswer").text().replace($(this).text(),''));
+        $("#ansPrompt").html('');
         $(this).remove();
     });
 });
